@@ -1,4 +1,4 @@
-package io.github.rafael24595;
+package io.github.rafael24595.output;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -7,19 +7,23 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 public class CodeQR {
 
-    private static final int SIZE = 40;
+    private static final int DEFAULT_SIZE = 40;
 
     private CodeQR() throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 
     public static void print(String text) {
+        print(text, DEFAULT_SIZE);
+    }
+
+    public static void print(String text, int size) {
         try {
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, SIZE, SIZE);
+            BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, size, size);
 
-            for (int y = 0; y < SIZE; y++) {
-                for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < size; y++) {
+                for (int x = 0; x < size; x++) {
                     System.out.print(bitMatrix.get(x, y) ? "██" : "  ");
                 }
                 System.out.println();
