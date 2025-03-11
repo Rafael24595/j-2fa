@@ -17,6 +17,23 @@ class AuthTOTPTest {
             "'MySecret'",
     })
     void testSymmetry(String secret) throws GeneralSecurityException {
+        AuthTOTP totp = new AuthTOTP();
+
+        secret = Base32.encode(secret);
+
+        String code = totp.generate(secret);
+        boolean intTime = totp.validate(secret, code);
+
+        assertTrue(intTime);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'MyUltraSuperSecretKey'",
+            "'HelloTOTPAuth'",
+            "'MySecret'",
+    })
+    void testResolverSymmetry(String secret) throws GeneralSecurityException {
         TimeResolverTest resolver = new TimeResolverTest();
         AuthTOTP totp = new AuthTOTP(resolver);
 
