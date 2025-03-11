@@ -1,0 +1,1 @@
+🔒 A simple test project for configuring 2FA authentication.
