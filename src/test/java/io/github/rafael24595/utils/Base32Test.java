@@ -1,7 +1,5 @@
 package io.github.rafael24595.utils;
 
-import io.github.rafael24595.utils.Base32;
-import org.apache.commons.codec.EncoderException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.api.Test;
@@ -16,7 +14,7 @@ class Base32Test {
             "'J5FSC===', 'OK!'",
             "'JV4VK3DUOJQVG5LQMVZFGZLDOJSXIS3FPE======', 'MyUltraSuperSecretKey'",
     })
-    void testEncoding(String base32, String text) throws EncoderException {
+    void testEncoding(String base32, String text) {
         assertEquals(base32, Base32.encode(text.getBytes()));
     }
 
@@ -37,7 +35,7 @@ class Base32Test {
     }
 
     @Test
-    public void testSymmetry() {
+    void testSymmetry() {
         String input = "Java Encoding Test!";
         String encoded = Base32.encode(input.getBytes());
         String decoded = new String(Base32.decode(encoded));

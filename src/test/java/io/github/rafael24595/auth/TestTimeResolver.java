@@ -2,11 +2,11 @@ package io.github.rafael24595.auth;
 
 import io.github.rafael24595.ITimeResolver;
 
-class TimeResolverTest implements ITimeResolver {
+public class TestTimeResolver implements ITimeResolver {
 
     private long increment;
 
-    public TimeResolverTest() {
+    public TestTimeResolver() {
         this.increment = 0;
     }
 
