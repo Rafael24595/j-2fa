@@ -34,7 +34,7 @@ class AuthTOTPTest {
             "'MySecret'",
     })
     void testResolverSymmetry(String secret) throws GeneralSecurityException {
-        TestTimeResolver resolver = new TestTimeResolver();
+        TimeResolverTraveler resolver = new TimeResolverTraveler();
         AuthTOTP totp = new AuthTOTP(resolver);
 
         secret = Base32.encode(secret);
@@ -56,7 +56,7 @@ class AuthTOTPTest {
             "'MyUltraSuperSecretKey', 1",
     })
     void testToleranceSymmetry(String secret, int tolerance) throws GeneralSecurityException {
-        TestTimeResolver resolver = new TestTimeResolver();
+        TimeResolverTraveler resolver = new TimeResolverTraveler();
         AuthTOTP totp = new AuthTOTP(tolerance, resolver);
 
         secret = Base32.encode(secret);

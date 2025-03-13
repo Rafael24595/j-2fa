@@ -2,11 +2,13 @@ package io.github.rafael24595.auth;
 
 import io.github.rafael24595.ITimeResolver;
 
-public class TestTimeResolver implements ITimeResolver {
+import java.time.Instant;
+
+public class TimeResolverTraveler implements ITimeResolver {
 
     private long increment;
 
-    public TestTimeResolver() {
+    public TimeResolverTraveler() {
         this.increment = 0;
     }
 
@@ -17,7 +19,7 @@ public class TestTimeResolver implements ITimeResolver {
 
     @Override
     public long nowMilliseconds() {
-        return System.currentTimeMillis() + increment;
+        return Instant.now().toEpochMilli() + increment;
     }
 
 }
