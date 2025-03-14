@@ -1,4 +1,4 @@
-package io.github.rafael24595.auth;
+package io.github.rafael24595.totp;
 
 import io.github.rafael24595.ITimeResolver;
 

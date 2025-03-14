@@ -1,14 +1,13 @@
-package io.github.rafael24595.auth;
+package io.github.rafael24595.totp;
 
 import io.github.rafael24595.ITimeResolver;
-import io.github.rafael24595.utils.Base32;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
 
-public class AuthTOTP {
+public class ResolverTOTP {
 
     private static final String HMAC_ALGORITHM = "HmacSHA1";
     private static final int DEFAULT_INTERVAL = 30;
@@ -20,19 +19,19 @@ public class AuthTOTP {
     private final int tolerance;
     private final ITimeResolver resolver;
 
-    public AuthTOTP() {
+    public ResolverTOTP() {
         this(DEFAULT_TOLERANCE, new TimeResolverSystem());
     }
 
-    public AuthTOTP(int tolerance) {
+    public ResolverTOTP(int tolerance) {
         this(tolerance, new TimeResolverSystem());
     }
 
-    public AuthTOTP(ITimeResolver resolver) {
+    public ResolverTOTP(ITimeResolver resolver) {
         this(DEFAULT_TOLERANCE, resolver);
     }
 
-    public AuthTOTP(int tolerance, ITimeResolver resolver) {
+    public ResolverTOTP(int tolerance, ITimeResolver resolver) {
         //TODO-FUTURE: Expose interval and digits parametrization.
         this.interval = DEFAULT_INTERVAL;
         this.digits = DEFAULT_DIGITS;
@@ -50,7 +49,7 @@ public class AuthTOTP {
     }
 
     private String generate(String secret, long time) throws GeneralSecurityException {
-        byte[] keyBytes = Base32.decode(secret);
+        byte[] keyBytes = SecretAdapter.decode(secret);
 
         byte[] timeBytes = ByteBuffer.allocate(8)
                 .putLong(time)

@@ -1,4 +1,4 @@
-package io.github.rafael24595.auth;
+package io.github.rafael24595.totp;
 
 import io.github.rafael24595.utils.Base32;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,7 +8,7 @@ import java.security.GeneralSecurityException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AuthTOTPTest {
+class ResolverTOTPTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -17,7 +17,7 @@ class AuthTOTPTest {
             "'MySecret'",
     })
     void testSymmetry(String secret) throws GeneralSecurityException {
-        AuthTOTP totp = new AuthTOTP();
+        ResolverTOTP totp = new ResolverTOTP();
 
         secret = Base32.encode(secret);
 
@@ -35,7 +35,7 @@ class AuthTOTPTest {
     })
     void testResolverSymmetry(String secret) throws GeneralSecurityException {
         TimeResolverTraveler resolver = new TimeResolverTraveler();
-        AuthTOTP totp = new AuthTOTP(resolver);
+        ResolverTOTP totp = new ResolverTOTP(resolver);
 
         secret = Base32.encode(secret);
 
@@ -57,7 +57,7 @@ class AuthTOTPTest {
     })
     void testToleranceSymmetry(String secret, int tolerance) throws GeneralSecurityException {
         TimeResolverTraveler resolver = new TimeResolverTraveler();
-        AuthTOTP totp = new AuthTOTP(tolerance, resolver);
+        ResolverTOTP totp = new ResolverTOTP(tolerance, resolver);
 
         secret = Base32.encode(secret);
 

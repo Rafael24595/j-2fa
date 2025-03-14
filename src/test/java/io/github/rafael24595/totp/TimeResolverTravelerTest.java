@@ -1,4 +1,4 @@
-package io.github.rafael24595.auth;
+package io.github.rafael24595.totp;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
