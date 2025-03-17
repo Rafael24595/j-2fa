@@ -6,7 +6,7 @@
 
     <groupId>io.github.rafael24595</groupId>
     <artifactId>j-2fa</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
